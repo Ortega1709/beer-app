@@ -5,6 +5,7 @@ import androidx.room.Room
 import com.ortega.pictures.data.datasource.local.PhotosDB
 import com.ortega.pictures.data.datasource.remote.PhotosAPI
 import com.ortega.pictures.util.Constants.BASE_URL
+import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.android.qualifiers.ApplicationContext
@@ -14,7 +15,7 @@ import retrofit2.converter.gson.GsonConverterFactory
 import javax.inject.Singleton
 
 
-@Singleton
+@Module
 @InstallIn(SingletonComponent::class)
 object AppModule {
 
@@ -30,7 +31,7 @@ object AppModule {
 
     @Singleton
     @Provides
-    fun providePicturesAPI(retrofit: Retrofit): PhotosAPI {
+    fun providePhotosAPI(retrofit: Retrofit): PhotosAPI {
         return retrofit.create(PhotosAPI::class.java)
     }
 

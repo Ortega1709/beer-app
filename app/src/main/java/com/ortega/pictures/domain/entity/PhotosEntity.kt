@@ -4,7 +4,9 @@ import androidx.room.Entity
 import androidx.room.PrimaryKey
 
 
-@Entity
+@Entity(
+    tableName = "photos"
+)
 data class PhotosEntity (
 
     @PrimaryKey

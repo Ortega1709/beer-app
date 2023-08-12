@@ -63,9 +63,9 @@ dependencies {
     implementation(libs.material3)
 
     // Hilt
-    kapt(libs.hilt.compiler)
     implementation(libs.hilt.android)
     implementation(libs.hilt.navigation)
+    kapt(libs.hilt.compiler)
 
     // Paging
     implementation(libs.paging.compose)
