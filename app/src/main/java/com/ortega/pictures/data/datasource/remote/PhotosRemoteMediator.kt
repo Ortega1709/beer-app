@@ -35,7 +35,7 @@ class PhotosRemoteMediator @Inject constructor(
                     if (lItem == null) {
                         1
                     } else {
-                        (lItem.id / state.config.pageSize) + 10
+                        (lItem.id / state.config.pageSize) + 1
                     }
                 }
             }
