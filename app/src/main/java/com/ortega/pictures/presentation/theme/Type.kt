@@ -1,4 +1,4 @@
-package com.ortega.pictures.ui.theme
+package com.ortega.pictures.presentation.theme
 
 import androidx.compose.material3.Typography
 import androidx.compose.ui.text.TextStyle

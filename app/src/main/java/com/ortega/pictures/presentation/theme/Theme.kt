@@ -1,4 +1,4 @@
-package com.ortega.pictures.ui.theme
+package com.ortega.pictures.presentation.theme
 
 import android.app.Activity
 import android.os.Build
