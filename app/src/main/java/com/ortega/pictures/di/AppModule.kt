@@ -1,9 +1,16 @@
 package com.ortega.pictures.di
 
 import android.content.Context
+import androidx.paging.ExperimentalPagingApi
+import androidx.paging.Pager
+import androidx.paging.PagingConfig
 import androidx.room.Room
+import com.ortega.pictures.data.datasource.local.PhotosDAO
 import com.ortega.pictures.data.datasource.local.PhotosDB
 import com.ortega.pictures.data.datasource.remote.PhotosAPI
+import com.ortega.pictures.data.datasource.remote.PhotosRemoteMediator
+import com.ortega.pictures.data.repository.PhotosRepository
+import com.ortega.pictures.domain.entity.PhotosEntity
 import com.ortega.pictures.util.Constants.BASE_URL
 import dagger.Module
 import dagger.Provides
@@ -43,6 +50,24 @@ object AppModule {
             klass = PhotosDB::class.java,
             name = "note.db"
         ).build()
+    }
+
+    @OptIn(ExperimentalPagingApi::class)
+    @Singleton
+    @Provides
+    fun providePhotosPager(
+        photosDB: PhotosDB, photosRepository: PhotosRepository): Pager<Int, PhotosEntity> {
+
+        return Pager(
+            config = PagingConfig(pageSize = 20),
+            remoteMediator = PhotosRemoteMediator(
+                photosDB = photosDB,
+                photosRepository = photosRepository
+            ),
+            pagingSourceFactory = {
+                photosDB.photosDAO().pagingSource()
+            }
+        )
     }
 
 }

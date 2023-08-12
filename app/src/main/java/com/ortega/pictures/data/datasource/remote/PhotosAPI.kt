@@ -12,7 +12,7 @@ interface PhotosAPI {
     suspend fun getAllPhotos(
         @Query("offset") page: Int,
         @Query("limit") perPage: Int
-    ): Response<Output>
+    ): Output
 
 
 

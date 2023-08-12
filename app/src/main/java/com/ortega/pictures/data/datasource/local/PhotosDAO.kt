@@ -11,7 +11,7 @@ import com.ortega.pictures.domain.model.Photos
 interface PhotosDAO {
 
     @Upsert
-    suspend fun upsertAll(photos: List<Photos>)
+    suspend fun upsertAll(photos: List<PhotosEntity>)
 
     @Query("SELECT * FROM photos")
     fun pagingSource(): PagingSource<Int, PhotosEntity>
