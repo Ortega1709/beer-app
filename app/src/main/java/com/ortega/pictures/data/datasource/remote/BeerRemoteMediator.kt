@@ -1,6 +1,5 @@
 package com.ortega.pictures.data.datasource.remote
 
-import android.net.http.HttpException
 import androidx.paging.ExperimentalPagingApi
 import androidx.paging.LoadType
 import androidx.paging.PagingState
@@ -10,6 +9,8 @@ import com.ortega.pictures.data.datasource.local.BeerDB
 import com.ortega.pictures.data.repository.BeerRepository
 import com.ortega.pictures.domain.entity.BeerEntity
 import com.ortega.pictures.domain.mappers.toBeersEntity
+import kotlinx.coroutines.delay
+import retrofit2.HttpException
 import java.io.IOException
 import javax.inject.Inject
 
@@ -32,6 +33,7 @@ class BeerRemoteMediator @Inject constructor(
                 }
             }
 
+            delay(3000L)
             val beers = beerRepository.getAllBeers(page = key, perPage = state.config.pageSize)
 
             beerDB.withTransaction {
@@ -47,7 +49,7 @@ class BeerRemoteMediator @Inject constructor(
 
         } catch (e: IOException) {
             MediatorResult.Error(e)
-        } catch (e: retrofit2.HttpException) {
+        } catch (e: HttpException) {
             MediatorResult.Error(e)
         }
 

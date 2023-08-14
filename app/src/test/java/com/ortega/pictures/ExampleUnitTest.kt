@@ -1,5 +1,6 @@
 package com.ortega.pictures
 
+import com.ortega.pictures.data.datasource.remote.PunkAPI
 import org.junit.Test
 
 import org.junit.Assert.*
@@ -13,5 +14,10 @@ class ExampleUnitTest {
     @Test
     fun addition_isCorrect() {
         assertEquals(4, 2 + 2)
+    }
+
+    @Test
+    fun apiResponse_isCorrect() {
+
     }
 }

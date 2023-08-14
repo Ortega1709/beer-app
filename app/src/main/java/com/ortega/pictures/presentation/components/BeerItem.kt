@@ -28,11 +28,10 @@ fun BeerItem(beer: Beer) {
                     modifier = Modifier
                         .size(70.dp)
                         .clip(RoundedCornerShape(8.dp))
-                        .background(Color.Gray),
+                        .background(Color.White),
                     model = beer.imageUrl,
                     onLoading = {  },
-                    contentDescription = null,
-                    contentScale = ContentScale.Crop
+                    contentDescription = null
                 )
             },
             overlineContent = { Text(text = beer.tagline) },
