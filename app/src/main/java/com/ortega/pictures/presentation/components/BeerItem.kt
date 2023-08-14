@@ -15,10 +15,11 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
+import com.ortega.pictures.domain.model.Beers
 import com.ortega.pictures.presentation.theme.PicturesTheme
 
 @Composable
-fun PhotosItem(photos: Photos) {
+fun BeerItem(beer: Beers) {
 
     Column {
         ListItem(
@@ -28,14 +29,15 @@ fun PhotosItem(photos: Photos) {
                         .size(70.dp)
                         .clip(RoundedCornerShape(8.dp))
                         .background(Color.Gray),
-                    model = photos.url,
+                    model = beer.imageUrl,
                     onLoading = {  },
                     contentDescription = null,
                     contentScale = ContentScale.Crop
                 )
             },
-            headlineContent = { Text(text = photos.title) },
-            supportingContent = { Text(text = photos.description) }
+            overlineContent = { Text(text = beer.tagline) },
+            headlineContent = { Text(text = beer.name) },
+            supportingContent = { Text(text = beer.description) }
         )
 
         Divider(
@@ -48,15 +50,16 @@ fun PhotosItem(photos: Photos) {
 
 @Preview
 @Composable
-fun PhotosItemPreview() {
+fun BeerItemPreview() {
     PicturesTheme {
-        val photos = Photos(
+        val beer = Beers(
             1,
-            "https://www.google.com",
+            "Primus",
             "Birds are amazing",
-            "Quick shoot photos of birds"
+            "Quick shoot photos of birds",
+            imageUrl = "https://www.google.com"
         )
 
-        PhotosItem(photos)
+        BeerItem(beer)
     }
 }
